@@ -1,0 +1,455 @@
+  PID TTY          TIME CMD
+13466 pts/6    00:00:00 bash
+13585 pts/6    00:00:00 bash
+13642 pts/6    00:00:00 ps
+    1  pwd
+    2  ls
+    3  vi examples.desktop 
+    4  ls
+    5  mkdir CS485
+    6  cd CS485/
+    7  pwd
+    8  quit
+    9  exit
+   10  cd CS485/
+   11  mkdir prog1
+   12  cd prog1/
+   13  wget http://www.cs.uky.edu/~raphael/courses/CS485/proj1/Makefile
+   14  ls
+   15  vi Makefile 
+   16  make
+   17  vi Makefile 
+   18  wget http://www.cs.uky.edu/~raphael/courses/CS485/proj1/testData
+   19  wget http://www.cs.uky.edu/~raphael/courses/CS485/proj1/workingProgram
+   20  wget http://www.cs.uky.edu/~raphael/courses/CS485/proj1/createData.pl
+   21  chmod +x workingProgram createData.pl
+   22  ls
+   23  ./workingProgram 
+   24  od -t d4 -t x4 testData
+   25  man 3 strtok
+   26  ls
+   27  cd CS485/
+   28  cd lab1/
+   29  ls
+   30  kcacheground
+   31  kcachegrind
+   32  logout
+   33  wget http://www.cs.uky.edu/~raphael/courses/CS485/lab1/test.c
+   34  ls
+   35  vi test.c 
+   36  gcc -Wall -O0 -o test test.c
+   37  time ./test 1000
+   38  ls
+   39  rm test
+   40  gcc -Wall -O3 -o test test.c
+   41  time ./test 1000
+   42  echo "The optimization level 3 was faster. It took 0.002s | 2ms time."
+   43  ls
+   44  rm test
+   45  gcc -Wall -p -g -O0 -o test test.c
+   46  ./test 1000
+   47  gprof -p ./test
+   48  gprof -q ./test
+   49  vi test.c 
+   50  ls
+   51  rm test
+   52  gcc -Wall -p -g -O0 -o test test.c
+   53  ./test 1000
+   54  gprof -p ./test
+   55  echo "wrong optimization level -- oops"
+   56  rm test
+   57  gcc -Wall -p -g -O3 -o test test.c
+   58  ./test 1000
+   59  gprof -p ./test
+   60  echo "no time accumulated because it took less time than gprof measures...?"
+   61  gprof -q ./test
+   62  gprof -q ./test
+   63  rm test
+   64  ls
+   65  gcc -Wall -p -g -O0 -o test test.c
+   66  valgrind --tool=callgrind ./test 1000
+   67  ls
+   68  kcachegrind callgrind.out.4775 
+   69  kcachegrind
+   70  sudo kcachegrind
+   71  echo "Dr. Finkel says I should report user-time, so it actually took 0.00 seconds"
+   72  xhost local:root
+   73  kcachegrind
+   74  ls
+   75  vi callgrind.out.4775 
+   76  ls
+   77  exit
+   78  ls
+   79  cd CS485/
+   80  ls
+   81  mkdir lab1
+   82  cd lab1/
+   83  script session_lab1.txt
+   84  ls
+   85  scp session_lab1.txt ~/Desktop
+   86  pwd
+   87  ls
+   88  cd ..
+   89  cd prog1/
+   90  wget http://www.cs.uky.edu/~raphael/courses/CS485/proj1/testData
+   91  wget http://www.cs.uky.edu/~raphael/courses/CS485/proj1/workingProgram
+   92  wget http://www.cs.uky.edu/~raphael/courses/CS485/proj1/createData.pl
+   93  chmod +x workingProgram createData.pl
+   94  od -t d4 -t x4 testData
+   95  ls
+   96  make clean
+   97  make
+   98  vi Makefile 
+   99  ls
+  100  ./workingProgram 
+  101  ./workingProgram testData
+  102  cd CS485/
+  103  cd prog1/
+  104  ls
+  105  rm workingProgram
+  106  rm workingProgram.1 
+  107  wget http://www.cs.uky.edu/~raphael/courses/CS485/proj1/workingProgram
+  108  ls
+  109  rm createData.pl.1 
+  110  rm testData.1 
+  111  ls
+  112  make
+  113  vi Makefile 
+  114  make
+  115  vi Makefile 
+  116  ls
+  117  vi testData 
+  118  vi Makefile 
+  119  chmod +x workingProgram createData.pl
+  120  ls
+  121  ./workingProgram testData 
+  122  cd CS485/
+  123  cd prog1/
+  124  ls
+  125  ./workingProgram testData 
+  126  cd CS485/
+  127  cd prog1/
+  128  ls
+  129  vi psuedocode.txt 
+  130  exit
+  131  cd CS485/
+  132  cd prog1/
+  133  vi psuedocode.txt 
+  134  vi read_data.c
+  135  gcc read_data.c -o rd
+  136  vi read_data.c
+  137  gcc read_data.c -o rd
+  138  vi read_data.c
+  139  gcc read_data.c -o rd
+  140  vi read_data.c
+  141  gcc read_data.c -o rd
+  142  vi read_data.c
+  143  gcc read_data.c -o rd
+  144  vi read_data.c
+  145  gcc read_data.c -o rd
+  146  vi read_data.c
+  147  gcc read_data.c -o rd
+  148  ./rd
+  149  gcc read_data.c -o rd
+  150  vi read_data.c
+  151  gcc read_data.c -o rd
+  152  ./rd
+  153  vi read_data.c
+  154  cd CS485/
+  155  cd prog1/
+  156  gcc read_data.c -o rd
+  157  ./rd
+  158  gcc read_data.c -o rd
+  159  ./rd
+  160  gcc read_data.c -o rd
+  161  ./rd
+  162  gcc read_data.c -o rd
+  163  ./rd
+  164  gcc read_data.c -o rd
+  165  ./rd
+  166  od -t d4 -t x4 testData
+  167  gcc read_data.c -o rd
+  168  ./rd
+  169  cd CS485/
+  170  cd prog1/
+  171  gcc prog1.c -o prog1
+  172  ./prog1 
+  173  ./prog1 testData 
+  174  man 3 strspn
+  175  gcc prog1.c -o prog1
+  176  ./prog1 testData 
+  177  gcc prog1.c -o prog1
+  178  ./prog1 testData 
+  179  q
+  180  gcc prog1.c -o prog1
+  181  ./prog1 testData 
+  182  gcc prog1.c -o prog1
+  183  ./prog1 testData 
+  184  gcc prog1.c -o prog1
+  185  ./prog1 testData 
+  186  gcc prog1.c -o prog1
+  187  ./prog1 testData 
+  188  gcc prog1.c -o prog1
+  189  ./prog1 testData 
+  190  gcc prog1.c -o prog1
+  191  ./prog1 testData 
+  192  gcc prog1.c -o prog1
+  193  ./prog1 testData 
+  194  gcc prog1.c -o prog1
+  195  ./prog1 testData 
+  196  gcc prog1.c -o prog1
+  197  man 3 strtok
+  198  gcc prog1.c -o prog1
+  199  ./prog1
+  200  ./prog1 testData 
+  201  gcc prog1.c -o prog1
+  202  ./prog1 testData 
+  203  gcc prog1.c -o prog1
+  204  ./prog1 testData 
+  205  gcc prog1.c -o prog1
+  206  ./prog1 testData 
+  207  gcc prog1.c -o prog1
+  208  ./prog1 testData 
+  209  gcc prog1.c -o prog1
+  210  ./prog1 testData 
+  211  gcc prog1.c -o prog1
+  212  ./prog1 testData 
+  213  gcc prog1.c -o prog1
+  214  ./prog1 testData 
+  215  gcc prog1.c -o prog1
+  216  ./prog1 testData 
+  217  gcc prog1.c -o prog1
+  218  ./prog1 testData 
+  219  gcc prog1.c -o prog1
+  220  ./prog1 testData 
+  221  gcc prog1.c -o prog1
+  222  ./prog1 testData 
+  223  gcc prog1.c -o prog1
+  224  ./prog1 testData 
+  225  gcc prog1.c -o prog1
+  226  ./prog1 testData 
+  227  gcc prog1.c -o prog1
+  228  ./prog1 testData 
+  229  gcc prog1.c -o prog1
+  230  ./prog1 testData 
+  231  gcc prog1.c -o prog1
+  232  ./prog1 testData 
+  233  gcc prog1.c -o prog1
+  234  ./prog1 testData 
+  235  gcc prog1.c -o prog1
+  236  ./prog1 testData 
+  237  cd CS485/
+  238  cd prog1/
+  239  ls
+  240  gcc prog1.c -o prog1
+  241  ./prog1
+  242  ./prog1 testData 
+  243  gcc prog1.c -o prog1
+  244  ./prog1 testData 
+  245  gcc prog1.c -o prog1
+  246  ./prog1 testData 
+  247  gcc prog1.c -o prog1
+  248  ./prog1 testData 
+  249  gcc prog1.c -o prog1
+  250  ./prog1 testData 
+  251  gcc prog1.c -o prog1
+  252  ./prog1 testData 
+  253  gcc prog1.c -o prog1
+  254  ./prog1 testData 
+  255  gcc prog1.c -o prog1
+  256  ./prog1 testData 
+  257  gcc prog1.c -o prog1
+  258  ./prog1 testData 
+  259  gcc prog1.c -o prog1
+  260  ./prog1 testData 
+  261  gcc prog1.c -o prog1
+  262  ./prog1 testData 
+  263  gcc prog1.c -o prog1
+  264  ./prog1 testData 
+  265  gcc prog1.c -o prog1
+  266  ./prog1 testData 
+  267  gcc prog1.c -o prog1
+  268  ./prog1 testData 
+  269  gcc prog1.c -o prog1
+  270  ./prog1 testData 
+  271  gcc prog1.c -o prog1
+  272  ./prog1 testData 
+  273  gcc prog1.c -o prog1
+  274  ./prog1 testData 
+  275  q
+  276  gcc prog1.c -o prog1
+  277  ./prog1 testData 
+  278  gcc prog1.c -o prog1
+  279  ./prog1 testData 
+  280  gcc prog1.c -o prog1
+  281  ./prog1 testData 
+  282  gcc prog1.c -o prog1
+  283  ./prog1 testData 
+  284  gcc prog1.c -o prog1
+  285  ./prog1
+  286  ./prog1 testData 
+  287  ./prog1
+  288  gcc prog1.c -o prog1
+  289  ./prog1 testData 
+  290  cd CS485/
+  291  cd prog1/
+  292  ls
+  293  gcc prog1.c -o prg1
+  294  gcc prog1.c -o prog1
+  295  ./prog1 testData 
+  296  gcc prog1.c -o prog1
+  297  ./prog1 testData 
+  298  cd CS485/
+  299  cd prog1/
+  300  gcc prog1.c -o prog1
+  301  ./prog1 testData 
+  302  gcc prog1.c -o prog1
+  303  ./prog1 testData 
+  304  gcc prog1.c -o prog1
+  305  ./prog1 testData 
+  306  cd CS485/
+  307  cd prog1/
+  308  od -t d4 -t x4 testData
+  309  cd CS485/
+  310  cd prog1/
+  311  ls
+  312  gcc prog1.c -o prog1
+  313  ./prog1 testData 
+  314  ./prog1
+  315  ls
+  316  gcc prog1.c -o prog1
+  317  ./prog1 testData 
+  318  gcc prog1.c -o prog1
+  319  ./prog1 testData 
+  320  gcc prog1.c -o prog1
+  321  ./prog1 testData 
+  322  gcc prog1.c -o prog1
+  323  ./prog1 testData 
+  324  gcc prog1.c -o prog1
+  325  ./prog1 testData 
+  326  gcc prog1.c -o prog1
+  327  ./prog1 testData 
+  328  gcc prog1.c -o prog1
+  329  ./prog1 testData 
+  330  gcc prog1.c -o prog1
+  331  ./prog1 testData 
+  332  gcc prog1.c -o prog1
+  333  ./prog1 testData 
+  334  gcc prog1.c -o prog1
+  335  ./prog1 testData 
+  336  gcc prog1.c -o prog1
+  337  ./prog1 testData 
+  338  gcc prog1.c -o prog1
+  339  ./prog1 testData 
+  340  gcc prog1.c -o prog1
+  341  ./prog1 testData 
+  342  gcc prog1.c -o prog1
+  343  ./prog1 testData 
+  344  gcc prog1.c -o prog1
+  345  ./prog1 testData 
+  346  gcc prog1.c -o -g prog1
+  347  gcc -g prog1.c -o prog1
+  348  gdb prog1
+  349  gcc -g prog1.c -o prog1
+  350  gdb prog1
+  351  gcc -g prog1.c -o prog1
+  352  ./prog1 testData 
+  353  gcc -g prog1.c -o prog1
+  354  ./prog1 testData 
+  355  gcc -g prog1.c -o prog1
+  356  ./prog1 testData 
+  357  gcc -g prog1.c -o prog1
+  358  ./prog1 testData 
+  359  gcc -g prog1.c -o prog1
+  360  ./prog1 testData 
+  361  gcc -g prog1.c -o prog1
+  362  ./prog1 testData 
+  363  gcc -g prog1.c -o prog1
+  364  ./prog1 testData 
+  365  gcc -g prog1.c -o prog1
+  366  ./prog1 testData 
+  367  gcc -g prog1.c -o prog1
+  368  ./prog1 testData 
+  369  gcc -g prog1.c -o prog1
+  370  ./prog1 testData 
+  371  gcc -g prog1.c -o prog1
+  372  ./prog1 testData 
+  373  gcc -g prog1.c -o prog1
+  374  ./prog1 testData 
+  375  gcc -g prog1.c -o prog1
+  376  ./prog1 testData 
+  377  gcc -g prog1.c -o prog1
+  378  ./prog1 testData 
+  379  gcc -g prog1.c -o prog1
+  380  ./prog1 testData 
+  381  gcc -g prog1.c -o prog1
+  382  ./prog1 testData 
+  383  cd CS485/
+  384  cd prog1/
+  385  gcc -g prog1.c -o prog1
+  386  ./prog1 testData 
+  387  gcc -g prog1.c -o prog1
+  388  ./prog1 testData 
+  389  gcc -g prog1.c -o prog1
+  390  ./prog1 testData 
+  391  gcc -g prog1.c -o prog1
+  392  ./prog1 testData 
+  393  gcc -g prog1.c -o prog1
+  394  ./prog1 testData 
+  395  gcc -g prog1.c -o prog1
+  396  ./prog1 testData 
+  397  gcc -g prog1.c -o prog1
+  398  ./prog1 testData 
+  399  gcc -g prog1.c -o prog1
+  400  ./prog1 testData 
+  401  gcc -g prog1.c -o prog1
+  402  ./prog1 testData 
+  403  gcc -g prog1.c -o prog1
+  404  ./prog1 testData 
+  405  gcc -g prog1.c -o prog1
+  406  ./prog1 testData 
+  407  gcc -g prog1.c -o prog1
+  408  ./prog1 testData 
+  409  ls
+  410  cd CS216
+  411  mkdir CS216
+  412  ls
+  413  pwd
+  414  cd /
+  415  ls
+  416  cd home/
+  417  ls
+  418  cd clpike3/
+  419  ls
+  420  cd Documents/
+  421  ls
+  422  cd NoMachine/
+  423  ls
+  424  cd ..
+  425  ls
+  426  cd CS485/
+  427  git add *
+  428  ls
+  429  cd prog1/
+  430  git rm prg1 
+  431  cd ..
+  432  git add *
+  433  git commit -m "prog1 handles blank inputs"
+  434  git push
+  435  git config --global user.email kendallweihe@gmail.com
+  436  cd CS216
+  437  cd lab1/
+  438  pwd > file1
+  439  ls
+  440  vi file1 
+  441  cat file1
+  442  cowsay “Hello, Charlie Brown. I am Kendall Weihe.” >> file1
+  443  cat file1
+  444  echo shell
+  445  echo $shell
+  446  echo $SHELL
+  447  ps
+  448  ls
+  449  cat file2
+  450  history
+  451  history >> file2
