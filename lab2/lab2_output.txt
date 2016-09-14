@@ -1,0 +1,53 @@
+28475:combater
+28573:comforter
+28899:commuter
+28911:compacter
+29130:completer
+29336:computer
+6600:antiscience
+6601:antisciences
+14765:bioscience
+14766:biosciences
+30352:conscience
+30353:conscienceless
+30354:consciences
+51049:ethnoscience
+51050:ethnosciences
+61559:geoscience
+61560:geosciences
+97648:nescience
+97649:nesciences
+97860:neuroscience
+97861:neurosciences
+99976:nonscience
+99977:nonsciences
+102184:omniscience
+102185:omnisciences
+117626:prescience
+117627:presciences
+120053:pseudoscience
+120054:pseudosciences
+134582:science
+134583:sciences
+148076:subscience
+148077:subsciences
+  648  neurosciences
+  649  nonsciences
+  650  omnisciences
+  651  presciences
+  652  pseudosciences
+  653  sciences
+  654  grep 'science' lexographics_sort_words.txt 
+  655  grep '\<com.*ter\>' lexographics_sort_words.txt > lab2_output.txt 
+  656  cat lab2_output.txt 
+  657  grep 'science' lexographics_sort_words.txt >> lab2_output.txt 
+  658  cat lab2_output.txt 
+  659  grep -n '\<com.*ter\>' lexographics_sort_words.txt > lab2_output.txt 
+  660  cat lab2_output.txt 
+  661  grep -n 'science' lexographics_sort_words.txt >> lab2_output.txt 
+  662  cat lab2_output.txt 
+  663  man tail
+  664  history | tail -20 >> lab2output.txt
+  665  cat lab2_output.txt 
+  666  echo "whoops copy and paste error -- my filename is different"
+  667  history | tail -20 >> lab2_output.txt
