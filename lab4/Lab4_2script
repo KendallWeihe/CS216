@@ -1,0 +1,60 @@
+#!/bin/bash
+# run the script with one command line argument, which represents the input file name
+# $./Lab4_2script UKY_buildings.txt
+# UKY_buildings.txt is the input file as the argument
+# Repeatedly display the main menu to let the user choose an option (enter Q or q to quit):
+# if option is S(or s), it provides sorting sub-menu for the user to choose:
+#                       if opiton is 1, sort the buildings in dictionary order by buildings' names
+#                       if option is 2, sort the buildings in dictionary order by coordinates in the map
+#                       if option is 3, sort the buildings in non-descending order by buildings' IDs
+#                       if other option, display the message of invalid choice.
+# if option is F(or f), it provides searching operation: asking the user to type the key word to search for
+# if opiton is Q(or q), quit the script
+# if it is other option, display the message of invalid option
+
+
+# Begin with checking whether the number of the command line arguments is exactly one
+if [ $# -ne 1 ]
+then
+    echo "Warning: need exactly one command line argument."
+    echo "Usage: $0 <inputfile_name>"
+    exit 1
+fi
+
+# Repeatedly display the main menu for the user to choose the option:
+
+while [ "$input" != "q" ] || [ "$input" != "Q" ]
+do
+	echo "Please input your menu option (enter Q or q to quit) "
+	echo "S --to sort the buildings in order."
+	echo "F --to look for building(s) with key word."
+
+	read input 
+
+	if [ "$input" == "s" ] || [ "$input" == "S" ]
+	then
+		echo "Sort the buildings in one of three orders:" 
+		echo "1. dictionary order by buildings' names "
+		echo "2. dictionary order by coordinates in the map"
+		echo "3. non-descending order by buildings' IDs "
+
+		read sort_input
+
+		case $sort_input in
+			1) sort -t$'\t'  UKY_buildings.txt;;
+			2) sort -t$'\t' -k2 UKY_buildings.txt;;
+			3) sort -t$'\t' -k3 UKY_buildings.txt;;
+			*) echo "Invalid input"
+		esac
+
+	elif [ "$input" == "f" ] || [ "$input" == "F" ]
+	then
+		echo "Enter a keyword to search for"
+		read grep_input
+		grep -i $grep_input UKY_buildings.txt
+
+	else
+		echo "Invalid input"
+	fi	
+
+done
