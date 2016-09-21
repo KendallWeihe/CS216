@@ -25,6 +25,7 @@ fi
 
 while [ "$input" != "q" ] || [ "$input" != "Q" ]
 do
+
 	echo "Please input your menu option (enter Q or q to quit) "
 	echo "S --to sort the buildings in order."
 	echo "F --to look for building(s) with key word."
@@ -53,8 +54,13 @@ do
 		read grep_input
 		grep -i $grep_input UKY_buildings.txt
 
+	elif [ "$input" == "q" ] || [ "$input" == "Q" ]
+	then
+		exit 0
 	else
 		echo "Invalid input"
 	fi	
+
+
 
 done
