@@ -1,0 +1,7 @@
+SegFault:
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000401021 in BasketList::insertBasket (this=0x7fffffffe4f0, eggs=466) at BasketList.cpp:57
+57	   prevPtr->nextBasket = newBasketPtr;
+
+
