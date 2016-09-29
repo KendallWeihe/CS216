@@ -1,4 +1,4 @@
-/*
+ /*
  * File:   BasketList.cpp
  *
  * Created on September 27, 2016
@@ -49,19 +49,32 @@ void BasketList::insertBasket(int eggs)
 
    newBasketPtr = new Basket(eggs, currPtr);
 
-   while(currPtr != NULL && eggs > currPtr->egg_num)
-   {
-      prevPtr = currPtr;
-      currPtr = currPtr->nextBasket;
-   }
-   
-   if (head == NULL){
+   if (head == NULL){ //case where the linked list is empty
      head = newBasketPtr;
    }
+
    else {
-     prevPtr->nextBasket = newBasketPtr;
-     currPtr = prevPtr;
-     currPtr->nextBasket = NULL;
+     while(currPtr != NULL && eggs > currPtr->egg_num)
+     {
+        prevPtr = currPtr;
+        currPtr = currPtr->nextBasket;
+     }
+
+     if (currPtr == NULL) { //case where the insertion is at the end of the list
+       prevPtr->nextBasket = newBasketPtr;
+       newBasketPtr->nextBasket = NULL;
+     }
+     else {
+       if (prevPtr == NULL){ //case where the insertion is at the beginning of the list
+         head = newBasketPtr;
+         newBasketPtr->nextBasket = currPtr;
+       }
+       else { //case where the insertion is in the middle of the list
+         prevPtr->nextBasket = newBasketPtr;
+         newBasketPtr->nextBasket = currPtr;
+       }
+     }
+
    }
 
 }
@@ -106,11 +119,16 @@ void BasketList::deleteBasket (int eggs)
             delPtr = delPtr->nextBasket;
         }
 
-        prevPtr->nextBasket = delPtr->nextBasket;
+        if (delPtr->egg_num != eggs){
+          cout << "Eggs not found!" << endl;
+        }
+        else {
+          prevPtr->nextBasket = delPtr->nextBasket;
+          //Delete the node
+          delete delPtr;
+        }
    }
 
-   //Delete the node
-   delete delPtr;
 }
 
 

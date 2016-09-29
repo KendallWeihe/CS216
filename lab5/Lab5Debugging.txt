@@ -1,7 +1,11 @@
-SegFault:
-
 Program received signal SIGSEGV, Segmentation fault.
-0x0000000000401021 in BasketList::insertBasket (this=0x7fffffffe4f0, eggs=466) at BasketList.cpp:57
+0x0000000000401021 in BasketList::insertBasket (this=0x7fffffffdee0, eggs=31) at BasketList.cpp:57
 57	   prevPtr->nextBasket = newBasketPtr;
+(gdb) up
+#1  0x0000000000401099 in BasketList::makeBasketList (this=0x7fffffffdee0) at BasketList.cpp:72
+72	       insertBasket(eggValue);
+(gdb) up
+#2  0x00000000004012cd in main () at main.cpp:29
+29	   BL_of_bunny.makeBasketList();
 
-
+Answer: valgrind spits out the error: “Invalid write of size 8” because it is trying to write 8 Bytes (because 64-bit machine) to an invalid memory location (memory location 0x0 to be exact)

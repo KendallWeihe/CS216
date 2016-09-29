@@ -59,7 +59,6 @@ void pokemonList::sort_by_name(){
 }
 
 void pokemonList::shuffle(){
-  // plist.random_shuffle(plist.begin(), plist.end());
   for (int i = 0; i < plist.size(); i++){
     swap(plist[i], plist[rand() % plist.size()]);
   }
