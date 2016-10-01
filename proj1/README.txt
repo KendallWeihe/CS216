@@ -1,47 +1,29 @@
+README
 Author: Kendall Weihe
-Assignment: CS216 Fall 2016 Project 1
-Purpose: Use linked list to implement a single line text editor
+Project: A simple editor using linked lists
+Assignment: CS216 Fall 2016 Programming Assignment #1
 
+Purpose of this project:
+  - Learn/review linked lists
+    - insertion
+    - deletion
+  - Learn/review object oriented programming in C++
+  - Learn/review file handling in C++
 
+Requirements:
+  - Implement a simple text editor
+    - myEditor takes a text file as a parameter
+  - Read in a text file
+  - Offer commands that will allow the user to:
+    - insert lines anywhere in the document
+    - delete line anywhere in the document
+    - print the document to the command line
+    - print instructions on how to use the program
+    - save the document
 
-General pseudocode:
-	Class DocumentList
-		data:
-			head --> points to beginning of linked list of Document nodes
-		public:
-			constructor: head = NULL 
-			insert_line(): inserts line specified by line number
-			delete_line(): deletes line specified by line number
-			print_all_lines(): prints
-			save_document()
-			
+To execute program:
+  `make`
+  `./myEditor CS216PA1.txt`
+  `make clean`
 
-	Class Document:
-		data:
-			string: line
-			Document *next_line
-		public:
-			constructor: line, pointer to next basket
-			get_line: returns line (text)
-			get_next_line: returns pointer to next line
-
-			
-	main():
-		functions:
-			print_instructions()
-			input_text_file():
-				read in text file, getline()
-				invoke DocumentList.insert_line(line, n)			
-
-		loop until user enters q || Q
-			print command prompt >
-			if I
-				cin user input 
-				pass input and line number to DocumentList.insert_line()
-			elif D
-				invoke DocumentList.delete_line(n)
-			elif P
-				invoke DocumentList.print_all_lines()
-			elif s
-				invoke DocumentList.save_document(argv[1]) //file to save
-
+For general pseudocode, please see program files.

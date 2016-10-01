@@ -1,6 +1,6 @@
 
-proj1: *.cpp
-	g++ -std=c++11 -g *.cpp -o proj1
+myEditor: *.cpp
+	g++ -std=c++11 -g *.cpp -o myEditor
 
 clean:
-	rm proj1
+	rm myEditor
