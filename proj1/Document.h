@@ -51,6 +51,7 @@ class Document {
     void delete_line(int); // deletes a line
     void print_document(); // prints the document
     void save_document(string); // saves the document
+    ~Document(){ delete head; }; // destructor
 
 };
 
