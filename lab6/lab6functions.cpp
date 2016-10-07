@@ -1,30 +1,30 @@
-//Provide the function implementation 
+//Provide the function implementation
 //of each function declared in lab6functions.h
 //to complete the function definition
 #include "lab6functions.h"
 
-int* func1(int &parm1,int parm2) 
-{ 
+int* func1(int &parm1,int parm2)
+{
 	// function scope to stack storage
 	cout << "Calling func1: " << endl;
 	// function scope ptr in stack storage, it points to storage in the heap
-	int *ptr = new int; 
+	int *ptr = new int;
 	int temp = parm1;
-	parm1 = (parm1 + parm2)/2;  
+	parm1 = (parm1 + parm2)/2;
 	if (temp > parm2)
 		*ptr = temp - parm1;
-	else 
-		*ptr = parm2 - parm1; 
+	else
+		*ptr = parm2 - parm1;
 	// potential memory leak!!! it needs to be released from the caller.
-	return ptr; 
-} 
+	return ptr;
+}
 
 int func2(int count)
-{ 
+{
 	// function scope to stack storage
 	cout << "Calling func2: " << endl;
 	// function scope but program storage
-	static int sum = 0; 
+	static int sum = 0;
 	// sum retains its value between calls
 	sum = sum + count;   // sum keeps value for next call
 	return sum;
@@ -53,7 +53,7 @@ list<string> func3() {
     for (pos = slist.begin(); pos != slist.end(); pos++)
         cout << *pos << endl;
     return slist;
-} 
+}
 
 string change_Str(string original)
 {
@@ -66,5 +66,13 @@ string change_Str(string original)
 
 string reverse(string original, int& times)
 {
-	return "";
+		if (original == ""){
+			return "";
+		}
+		times++;
+		string single_character;
+		string new_string;
+		single_character = original.substr(0,1);
+		new_string = original.substr(1, original.length());
+		return reverse(new_string, times) + single_character;
 }
