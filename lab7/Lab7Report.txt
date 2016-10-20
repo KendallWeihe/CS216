@@ -1,24 +1,25 @@
 Question: Please list all the differences among the execution of Lab7_0, Lab7_1, Lab7_2 and Lab7_3, and give your own explanation.
 
-Lab7_0.cpp:
-	inf
+DIFFERENCES:
+	Lab7_0.cpp:
+		inf
 
-Lab7_1.cpp:
-	terminate called after throwing an instance of 'DivideByZero'
-	Aborted (core dumped)
+	Lab7_1.cpp:
+		terminate called after throwing an instance of 'DivideByZero'
+		Aborted (core dumped)
 
-Lab7_2.cpp:
-	Exception: Division by zero
-	After try-catch block!
-	The value of d is: 0
+	Lab7_2.cpp:
+		Exception: Division by zero
+		After try-catch block!
+		The value of d is: 0
 
-Lab7_3.cpp:
-	Exception: Math Error.
-	After try-catch block!
-	The value of d is: 0
+	Lab7_3.cpp:
+		Exception: Math Error.
+		After try-catch block!
+		The value of d is: 0
 
-The differences:
-	Lab7_0.cpp prints out "inf" because anything divided by zero if infinity.
+REASONS:
+	Lab7_0.cpp prints out "inf" because anything divided by zero if infinity -- must be a system error.
 	Lab7_1.cpp calls a system exception DivideByZero() function which Aborts the program.
 	Lab7_2.cpp uses a try block with the system call DivideByZero() and then calls err.getName() to print the error type.
 	Lab7_3.cpp does the same as Lab7_2.cpp but calls a Matherr() exception instead.
