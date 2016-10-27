@@ -1,0 +1,16 @@
+If operand then append to output
+	isOperand()
+	
+If operator is lesser precedence or equal to then pop and append, then push
+
+If operator is greater precedence  then push 
+
+If open parenthesis then push
+
+If closing parenthesis then pop everything
+
+output string should not have any parenthesis
+
+s.peek() --> look at top of stack
+
+precedence() and isOperand() already implemented
