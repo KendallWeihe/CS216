@@ -1,0 +1,193 @@
+Author: Kendall Weihe
+Assignment: CS216 Fall 2016 Project #2 Part I
+Requirements:
+  - Design 15 test cases for the simple line editor developed in project #1
+Purpose:
+  - Teach the student how to generate good and all-encompassing test cases
+
+Program specifications (directly copied from specs document):
+  • If the letter I is entered with a number n following it, display a prompt “>” along
+  with the line number n, after user types a line of text, then insert the text at line n, and
+  the original text at line n becomes line n+1. If n is larger than the total number of the
+  current lines displayed from the editor, then you need insert a few lines of empty text
+  in order to insert the user input text at line n. If the letter I is entered without a
+  number following it, display a prompt “>”, after user types a line of text, then insert
+  the text at the end of the current text lines. For example, before inserting the new text
+  line, the original text lines have m lines, then the new text line becomes line m+1.
+  • If D is entered with a number n, then delete line n. If n is not a valid line number,
+  then delete nothing.
+  • If L is entered, then list all lines of text.
+  • If S is entered, then save the current content into the input file (overwrite the old one)
+  • If H is entered, then display the instruction menu.
+  • (Not covered in these test cases) If C is entered with a number n, then the text line n is
+  copied into the clipboard. If is not a valid line number, then copy nothing.
+  • (Not covered in these test cases) If P is entered with a number n, then the content in the
+  clipboard is inserted at line n. If n is not a valid line number, then paste nothing.
+  • If Q is entered, prompt the message for the user to choose “Do you wan to save the
+  change? (Y - yes; N - no) If the user enters “Y’, save the text into the original input
+  file (overwrite the old one) then quit the program; if the user enters “N”, quit the
+  program directly.
+
+General testing outline:
+  - Test both successful and unsuccessful cases for each:
+    - Text insertion
+    - Text deletion
+    - Printing the file
+    - Saving the file
+    - Printing instructions
+    - Quitting the program
+    - Other erroneous cases
+
+Total number of test cases: 29
+
+------------------------------------------------------------------------------
+
+Text insertion (user inputs "I"):
+  Successful:
+    > I
+    > This is a line to be inserted
+      --> the above line is inserted at the end of the text file
+
+    > I 1
+    > This is a line to be inserted
+      --> the above line is inserted at the beginning of the text file
+
+    > I 5
+    > This is a line to be inserted
+      --> the above line is inserted at line number 5
+
+    Given the total number of lines is equal to 5
+      > I 10
+      > This is a line to be inserted
+        --> pad line numbers 6-9 with empty strings and insert the above line at line number 10
+
+  Unsuccessful:
+    > II
+    Invalid command
+
+    > I L
+    Invalid line number
+
+    > I 0
+    Invalid line number
+      --> line numbers begin at 1
+
+    > I -1
+    Invalid line number
+
+------------------------------------------------------------------------------
+
+Text deletion (user inputs "D"):
+  Successful:
+    > D 5
+      --> line number 5 is deleted
+
+  Unsuccessful:
+    > D
+    You must specify a line number to delete
+
+    > D D
+    Invalid line number
+
+    > D 0
+    Invalid line number
+      --> line numbers begin at 1
+
+    > D -1
+    Invalid line number
+
+    Given the total number of lines is equal to 5
+      > D 10
+      This line number does not exist
+
+------------------------------------------------------------------------------
+
+Printing the file (user inputs "L"):
+  Successful:
+    > L
+    1> the quick
+    2> brown
+    3>
+    4> fox jumps over the lazy
+    5> dog
+
+  Unsuccessful:
+    > L 2
+    Invalid command
+
+    > L abc
+    Invalid command
+
+------------------------------------------------------------------------------
+
+Saving the file (user inputs "S"):
+    Successful:
+      > S
+      File saved
+
+    Unsuccessful:
+      > S 123
+      Invalid command
+
+      > S abc
+      Invalid command
+
+------------------------------------------------------------------------------
+
+Printing the instructions (user inputs "H"):
+  Successful:
+    > H
+    -----------------------------------------------------------
+     To insert text at the end of the file, type 'I' then
+    press enter.
+     To insert text at a certain line number, type 'I'
+    followed by a space and the desired line number.
+     To delete a line, type 'D' followed by a space and the
+    line number.
+     To copy a line into clipboard, type 'C' followed by a
+    space and the line number.
+     To paste a line, type 'P' followed by a space and the
+    line number.
+     A text line which has been copied into clipboard
+    recently is the line to be pasted.
+     To print all the lines, type 'L' and press enter.
+     To save the current content, type 'S' and press enter.
+     To display this introduction, type 'H' and press
+    enter.
+     To quit, type 'Q' and press enter.
+    -----------------------------------------------------------
+
+  Unsuccessful:
+    > H 20
+    Invalid command
+
+    > H abc
+    Invalid command
+
+------------------------------------------------------------------------------
+
+Quitting the program (user inputs "Q"):
+  Successful:
+    > Q
+    Do you want to save the change? (Y-yes; N-no)
+    > Y
+    Thank you for using myEditor.
+
+  Unsuccessful:
+    > Q 0
+    Invalid command
+
+    > Q abc
+    Invalid command
+
+------------------------------------------------------------------------------
+
+Other erroneous cases:
+  > A
+  Invalid command
+
+  > Foo bar
+  Invalid command
+
+  > 123
+  Invalid command
