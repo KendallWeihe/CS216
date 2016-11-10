@@ -140,17 +140,18 @@ Matrix operator*(Matrix m1, int fac){
 Matrix operator*(Matrix m1, Matrix m2){
 	int x1 = m1.GetSizeX(), y1 = m1.GetSizeY(), x2 = m2.GetSizeX(), y2 = m2.GetSizeY();
 	Matrix return_matrix(x1, y2);
-	long temp = 0;
-	int index = 0;
+	long temp;
 
-	for (int i = 0; i < y1; i++){
-		for (int j = 0; j < x1; j++){
-			for (int k = 0; k < x2; k++){
-				temp += m1.p[i][j+index] * m2.p[j][k+index];
-				index += 1;
+	for (int i = 0; i < x1; i++){
+		for (int j = 0; j < y2; j++){
+			temp = 0;
+			for (int k = 0; k < y1; k++){
+				temp += m1.p[i][k] * m2.p[k][j];
 			}
+			return_matrix.p[i][j] = temp;
 		}
-		temp = 0;
 	}
+
+
 	return return_matrix;
 }
