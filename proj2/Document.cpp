@@ -188,3 +188,72 @@ void Document::save_document(string filename){
   file.close(); // clode the file stream
 
 }
+
+/*
+  copy():
+    This method is responsible for copying the text at the specified line number
+    Inputs: line number
+    Method must check if the document is empty and if the line number is valid
+*/
+void Document::copy(int copy_line_number){
+  Line *curr_ptr = head;
+
+  if (curr_ptr == NULL){ // case where the document is empty
+    cout << "This is an empty document\n";
+  }
+  else {
+
+      // find the line to copy
+      int line_number = 1;
+      bool line_found = false;
+      while (curr_ptr != NULL){ // loop until end of list
+        if (line_number == copy_line_number){ // case where the line number was found
+          line_found = true;
+          break;
+        }
+        curr_ptr = curr_ptr->next_node; // move to next line
+        line_number += 1; // increment line counter
+      }
+
+      if (line_found){
+        copy_line = curr_ptr->line; // assign the string to the data member copy_line
+      }
+      else {
+        cout << "You tried to copy a non-existent line\n";
+      }
+
+  }
+}
+
+/*
+  paste():
+    This method is responsible for pasting (inserting) the text at the specified line number
+    Inputs: line number
+    Method must check if the document is empty and if the line number is valid
+*/
+void Document::paste(int paste_line_number){
+
+  Line *curr_ptr = head;
+  int number_of_lines = 0;
+
+  if (curr_ptr == NULL){ // case where the document is empty
+    cout << "This is an empty document\n";
+  }
+  else {
+      // count the number of lines
+      while (curr_ptr != NULL){ // loop until end of list
+        curr_ptr = curr_ptr->next_node; // move to next line
+        number_of_lines += 1; // increment line counter
+      }
+
+  }
+
+  // check if the paste line number is a valid line number
+  if (paste_line_number > 0 && paste_line_number <= number_of_lines){
+    insert_line(copy_line, paste_line_number-1);
+  }
+  else {
+    cout << "You tried to paste to a non-existent line\n";
+  }
+
+}

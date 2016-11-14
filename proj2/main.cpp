@@ -105,6 +105,14 @@ int main(int argc,char *argv[]){
         int line_number = stoi(input_spliced[1]); // convert line number to int
         document.delete_line(line_number);
       }
+      else if ((input_spliced[0] == "c" || input_spliced[0] == "C") && input_spliced.size() == 2){
+        int line_number = stoi(input_spliced[1]);
+        document.copy(line_number);
+      }
+      else if ((input_spliced[0] == "p" || input_spliced[0] == "P") && input_spliced.size() == 2){
+        int line_number = stoi(input_spliced[1]);
+        document.paste(line_number);
+      }
       else if (input_spliced[0] == "l" || input_spliced[0] == "L"){ // case where user wants to print
         document.print_document();
       }
@@ -150,6 +158,8 @@ void print_instructions(){
   cout << "To insert text at the end of the file, type 'I' followed by the text." << endl;
   cout << "To insert text at a certain line number, type 'I' followed by a space and the desired line number." << endl;
   cout << "To delete a line, type 'D' followed by a space and the line number." << endl;
+  cout << "To copy a line into clipboard, type 'C' followed by a space and the line number." << endl;
+  cout << "To paste a line, type 'P' followed by a space and the line number." << endl;
   cout << "To print all the lines, type 'L' and press enter." << endl;
   cout << "To save the current content, type 'S' and press enter." << endl;
   cout << "To display this introduction, type 'H' and press enter." << endl;

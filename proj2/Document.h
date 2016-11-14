@@ -43,6 +43,7 @@ class Document {
 
   private:
     Line *head; // HEAD pointer to linked list
+    string copy_line;
 
   public:
     Document(){ head=NULL; }; // constructor -- initialize head to NULL
@@ -51,6 +52,8 @@ class Document {
     void delete_line(int); // deletes a line
     void print_document(); // prints the document
     void save_document(string); // saves the document
+    void copy(int);
+    void paste(int);
     ~Document(){ delete head; }; // destructor
 
 };
