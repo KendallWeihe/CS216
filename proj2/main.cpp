@@ -90,23 +90,45 @@ int main(int argc,char *argv[]){
         document.insert_line(line, line_count+1); // insert the line
       }
       else if ((input_spliced[0] == "i" || input_spliced[0] == "I") && input_spliced.size() == 2){ // case where user chose to insert a line not at the end of the document
-        int line_number = stoi(input_spliced[1]); // convert line number to int
-        if (line_number > 0){ // case where the line number exists
-          if (line_number < document.get_num_lines()){ // due to potential padding (line number > eof), anything less than the end of the file must be decremented
-            line_number -= 1;
+        bool is_numeric = true;
+        for (int i = 0; i < input_spliced[1].length(); i++){
+          if (!isdigit(input_spliced[1][i])){
+            is_numeric = false;
           }
-          cout << "> ";
-          string line;
-          getline(cin, line); // read line
-          document.insert_line(line, line_number);
         }
-        else { // case where the user tried to enter a line number that does not exist
-          cout << "This line number does not exist\n";
+        if (is_numeric){
+          int line_number = stoi(input_spliced[1]); // convert line number to int
+          if (line_number > 0){ // case where the line number exists
+            if (line_number < document.get_num_lines()){ // due to potential padding (line number > eof), anything less than the end of the file must be decremented
+              line_number -= 1;
+            }
+            cout << "> ";
+            string line;
+            getline(cin, line); // read line
+            document.insert_line(line, line_number);
+          }
+          else { // case where the user tried to enter a line number that does not exist
+            cout << "This line number does not exist\n";
+          }
+        }
+        else {
+          cout << "Invalid line number\n";
         }
       }
       else if ((input_spliced[0] == "d" || input_spliced[0] == "D") && input_spliced.size() == 2){ // case where user wants to delete line
-        int line_number = stoi(input_spliced[1]); // convert line number to int
-        document.delete_line(line_number);
+        bool is_numeric = true;
+        for (int i = 0; i < input_spliced[1].length(); i++){
+          if (!isdigit(input_spliced[1][i])){
+            is_numeric = false;
+          }
+        }
+        if (is_numeric){
+          int line_number = stoi(input_spliced[1]); // convert line number to int
+          document.delete_line(line_number);
+        }
+        else {
+          cout << "Invalid line number\n";
+        }
       }
       else if ((input_spliced[0] == "c" || input_spliced[0] == "C") && input_spliced.size() == 2){ // case where the user wants to copy a line
         int line_number = stoi(input_spliced[1]);
@@ -116,22 +138,22 @@ int main(int argc,char *argv[]){
         int line_number = stoi(input_spliced[1]);
         document.paste(line_number);
       }
-      else if (input_spliced[0] == "l" || input_spliced[0] == "L"){ // case where user wants to print
+      else if (input_spliced[0] == "l" || input_spliced[0] == "L"  && input_spliced.size() == 1){ // case where user wants to print
         document.print_document();
       }
-      else if (input_spliced[0] == "s" || input_spliced[0] == "S"){ // case where user wants to save
+      else if (input_spliced[0] == "s" || input_spliced[0] == "S"  && input_spliced.size() == 1){ // case where user wants to save
         document.save_document(argv[1]);
       }
-      else if (input_spliced[0] == "h" || input_spliced[0] == "H"){ // case where user wants to print the instructions again
+      else if (input_spliced[0] == "h" || input_spliced[0] == "H"  && input_spliced.size() == 1){ // case where user wants to print the instructions again
         print_instructions();
       }
-      else if (input_spliced[0] == "u" || input_spliced[0] == "U"){ // case where user wants to undo the previous action
+      else if (input_spliced[0] == "u" || input_spliced[0] == "U"  && input_spliced.size() == 1){ // case where user wants to undo the previous action
         document.undo();
       }
-      else if (input_spliced[0] == "r" || input_spliced[0] == "R"){ // case where user wants to redo the previous action
+      else if (input_spliced[0] == "r" || input_spliced[0] == "R"  && input_spliced.size() == 1){ // case where user wants to redo the previous action
         document.redo();
       }
-      else if (input_spliced[0] == "q" || input_spliced[0] == "Q") { // case where user wants to quit
+      else if (input_spliced[0] == "q" || input_spliced[0] == "Q"  && input_spliced.size() == 1) { // case where user wants to quit
         break;
       }
       else {
