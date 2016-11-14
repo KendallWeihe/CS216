@@ -79,7 +79,10 @@ int main(int argc,char *argv[]){
       cout << "This is an invalid command, please see instructions" << endl;
     }
     else { // case where user entered the correct type of command
-      if ((input_spliced[0] == "i" || input_spliced[0] == "I") && input_spliced.size() == 1){ // case where the user chose to insert a line at the end of the document
+      if (user_command == ""){
+        cout << "You didn't enter anything\n";
+      }
+      else if ((input_spliced[0] == "i" || input_spliced[0] == "I") && input_spliced.size() == 1){ // case where the user chose to insert a line at the end of the document
         cout << "> ";
         string line;
         getline(cin, line); // read in new line
@@ -105,11 +108,11 @@ int main(int argc,char *argv[]){
         int line_number = stoi(input_spliced[1]); // convert line number to int
         document.delete_line(line_number);
       }
-      else if ((input_spliced[0] == "c" || input_spliced[0] == "C") && input_spliced.size() == 2){
+      else if ((input_spliced[0] == "c" || input_spliced[0] == "C") && input_spliced.size() == 2){ // case where the user wants to copy a line
         int line_number = stoi(input_spliced[1]);
         document.copy(line_number);
       }
-      else if ((input_spliced[0] == "p" || input_spliced[0] == "P") && input_spliced.size() == 2){
+      else if ((input_spliced[0] == "p" || input_spliced[0] == "P") && input_spliced.size() == 2){ // case where the user wants to paste a line
         int line_number = stoi(input_spliced[1]);
         document.paste(line_number);
       }
@@ -121,6 +124,12 @@ int main(int argc,char *argv[]){
       }
       else if (input_spliced[0] == "h" || input_spliced[0] == "H"){ // case where user wants to print the instructions again
         print_instructions();
+      }
+      else if (input_spliced[0] == "u" || input_spliced[0] == "U"){ // case where user wants to undo the previous action
+        document.undo();
+      }
+      else if (input_spliced[0] == "r" || input_spliced[0] == "R"){ // case where user wants to redo the previous action
+        document.redo();
       }
       else if (input_spliced[0] == "q" || input_spliced[0] == "Q") { // case where user wants to quit
         break;
@@ -160,9 +169,12 @@ void print_instructions(){
   cout << "To delete a line, type 'D' followed by a space and the line number." << endl;
   cout << "To copy a line into clipboard, type 'C' followed by a space and the line number." << endl;
   cout << "To paste a line, type 'P' followed by a space and the line number." << endl;
+  cout << "A text line which has been copied into clipboard recently is the line to be pasted." << endl;
   cout << "To print all the lines, type 'L' and press enter." << endl;
   cout << "To save the current content, type 'S' and press enter." << endl;
   cout << "To display this introduction, type 'H' and press enter." << endl;
+  cout << "To Undo, type 'U' and press enter." << endl;
+  cout << "To Redo, type 'R' and press enter." << endl;
   cout << "To quit, type 'Q' and press enter." << endl;
   cout << "-----------------------------------------------------------" << endl;
 

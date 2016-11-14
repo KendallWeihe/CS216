@@ -32,6 +32,20 @@ Document::~Document(){
     delete curr_ptr; // free the memory of the current node
     curr_ptr = next_ptr;
   }
+
+  curr_ptr = undo_head;
+  while (curr_ptr != NULL){ // loop until end of list or line number found
+    next_ptr = curr_ptr->next_node; // go to next node
+    delete curr_ptr; // free the memory of the current node
+    curr_ptr = next_ptr;
+  }
+
+  curr_ptr = redo_head;
+  while (curr_ptr != NULL){ // loop until end of list or line number found
+    next_ptr = curr_ptr->next_node; // go to next node
+    delete curr_ptr; // free the memory of the current node
+    curr_ptr = next_ptr;
+  }
 }
 
 /*
@@ -67,6 +81,8 @@ int Document::get_num_lines(){
       - Inserting at a line beyond the current eof
 */
 void Document::insert_line(string line, int line_number){
+
+  copy_linked_list(head, undo_head);
 
   Line *curr_ptr = head;
   Line *prev_ptr = NULL;
@@ -136,6 +152,8 @@ void Document::delete_line(int line_number){
     cout << "You are trying to delete a line that does not exist\n";
   }
   else{
+
+      copy_linked_list(head, undo_head);
 
       Line *curr_ptr = head;
       Line *prev_ptr = NULL;
@@ -266,10 +284,70 @@ void Document::paste(int paste_line_number){
 
   // check if the paste line number is a valid line number
   if (paste_line_number > 0 && paste_line_number <= number_of_lines){
+    copy_linked_list(head, undo_head);
     insert_line(copy_line, paste_line_number-1);
   }
   else {
     cout << "You tried to paste to a non-existent line\n";
   }
 
+}
+
+/*
+  delete_list()
+    This function is to free the memory of a linked list
+      This function is used when copying linked list -- the old list must first be freed
+*/
+void Document::delete_list(Line *ptr){
+
+  if (ptr != NULL){ // check if the pointer is null
+      Line *curr_ptr = ptr;
+      Line *next_ptr = NULL;
+
+      while (curr_ptr != NULL){ // loop until end of list or line number found
+        next_ptr = curr_ptr->next_node; // go to next node
+        delete curr_ptr; // free the memory of the current node
+        curr_ptr = next_ptr;
+      }
+  }
+
+}
+
+/*
+  copy_linked_list()
+    This function is used to copy one linked list into another
+      This function is used for the undo and redo functions
+*/
+void Document::copy_linked_list(Line *&ptr_src, Line *&ptr_dest){
+
+  if (ptr_src != NULL){
+    delete_list(ptr_dest); // delete the old list
+    Line *curr_ptr = ptr_src;
+    ptr_dest = new Line(curr_ptr->line, NULL); // assign the new head of the list
+    Line *curr_undo_ptr = ptr_dest;
+    while (curr_ptr != NULL){ // iterate over the entire source list
+      Line *new_node = new Line(curr_ptr->line, NULL); // assign new node
+      curr_undo_ptr->next_node = new_node; // assign new node to list being copied to
+      curr_undo_ptr = new_node;
+      curr_ptr = curr_ptr->next_node;
+    }
+  }
+
+}
+
+/*
+  undo()
+    This function allows the user to undo a delete or insertion
+*/
+void Document::undo(){
+  copy_linked_list(head, redo_head);
+  copy_linked_list(undo_head, head);
+}
+
+/*
+  redo()
+    This function allows the user to redo a recent undo
+*/
+void Document::redo(){
+  copy_linked_list(redo_head, head);
 }
