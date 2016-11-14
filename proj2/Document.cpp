@@ -20,6 +20,21 @@ Line::Line(string new_line, Line *new_next_node){
 // Document METHODS-------------------------------------------------------------
 
 /*
+  ~Document() -- destructor
+    This method loops through the entire linked list and frees all node from the heap
+*/
+Document::~Document(){
+  Line *curr_ptr = head;
+  Line *next_ptr = NULL;
+
+  while (curr_ptr != NULL){ // loop until end of list or line number found
+    next_ptr = curr_ptr->next_node; // go to next node
+    delete curr_ptr; // free the memory of the current node
+    curr_ptr = next_ptr;
+  }
+}
+
+/*
   get_num_lines():
     This method is responsible for finding the total number of lines in the document.
     This can be useful when determining where to insert a line.
@@ -82,6 +97,7 @@ void Document::insert_line(string line, int line_number){
           prev_ptr->next_node = pad_list_with_blank_line;
           temp = pad_list_with_blank_line;
         }
+        delete pad_list_with_blank_line;
       }
       else {
         prev_ptr = curr_ptr;

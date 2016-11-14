@@ -24,7 +24,7 @@ class Line {
   public:
     Line(string, Line*); // constructor -- constructs a single node
     friend class Document; // friend relationship to Document class
-    ~Line(){ delete next_node; };
+
 };
 
 /*
@@ -54,7 +54,7 @@ class Document {
     void save_document(string); // saves the document
     void copy(int);
     void paste(int);
-    ~Document(){ delete head; }; // destructor
+    ~Document(); // destructor
 
 };
 
