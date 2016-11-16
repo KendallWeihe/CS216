@@ -79,7 +79,10 @@ int main(int argc,char *argv[]){
       cout << "This is an invalid command, please see instructions" << endl;
     }
     else { // case where user entered the correct type of command
-      if ((input_spliced[0] == "i" || input_spliced[0] == "I") && input_spliced.size() == 1){ // case where the user chose to insert a line at the end of the document
+      if (user_command == ""){
+        cout << "You didn't enter anything\n";
+      }
+      else if ((input_spliced[0] == "i" || input_spliced[0] == "I") && input_spliced.size() == 1){ // case where the user chose to insert a line at the end of the document
         cout << "> ";
         string line;
         getline(cin, line); // read in new line
@@ -87,34 +90,70 @@ int main(int argc,char *argv[]){
         document.insert_line(line, line_count+1); // insert the line
       }
       else if ((input_spliced[0] == "i" || input_spliced[0] == "I") && input_spliced.size() == 2){ // case where user chose to insert a line not at the end of the document
-        int line_number = stoi(input_spliced[1]); // convert line number to int
-        if (line_number > 0){ // case where the line number exists
-          if (line_number < document.get_num_lines()){ // due to potential padding (line number > eof), anything less than the end of the file must be decremented
-            line_number -= 1;
+        bool is_numeric = true;
+        for (int i = 0; i < input_spliced[1].length(); i++){
+          if (!isdigit(input_spliced[1][i])){
+            is_numeric = false;
           }
-          cout << "> ";
-          string line;
-          getline(cin, line); // read line
-          document.insert_line(line, line_number);
         }
-        else { // case where the user tried to enter a line number that does not exist
-          cout << "This line number does not exist\n";
+        if (is_numeric){
+          int line_number = stoi(input_spliced[1]); // convert line number to int
+          if (line_number > 0){ // case where the line number exists
+            if (line_number < document.get_num_lines()){ // due to potential padding (line number > eof), anything less than the end of the file must be decremented
+              line_number -= 1;
+            }
+            cout << "> ";
+            string line;
+            getline(cin, line); // read line
+            document.insert_line(line, line_number);
+          }
+          else { // case where the user tried to enter a line number that does not exist
+            cout << "This line number does not exist\n";
+          }
+        }
+        else {
+          cout << "Invalid line number\n";
         }
       }
       else if ((input_spliced[0] == "d" || input_spliced[0] == "D") && input_spliced.size() == 2){ // case where user wants to delete line
-        int line_number = stoi(input_spliced[1]); // convert line number to int
-        document.delete_line(line_number);
+        bool is_numeric = true;
+        for (int i = 0; i < input_spliced[1].length(); i++){
+          if (!isdigit(input_spliced[1][i])){
+            is_numeric = false;
+          }
+        }
+        if (is_numeric){
+          int line_number = stoi(input_spliced[1]); // convert line number to int
+          document.delete_line(line_number);
+        }
+        else {
+          cout << "Invalid line number\n";
+        }
       }
-      else if (input_spliced[0] == "l" || input_spliced[0] == "L"){ // case where user wants to print
+      else if ((input_spliced[0] == "c" || input_spliced[0] == "C") && input_spliced.size() == 2){ // case where the user wants to copy a line
+        int line_number = stoi(input_spliced[1]);
+        document.copy(line_number);
+      }
+      else if ((input_spliced[0] == "p" || input_spliced[0] == "P") && input_spliced.size() == 2){ // case where the user wants to paste a line
+        int line_number = stoi(input_spliced[1]);
+        document.paste(line_number);
+      }
+      else if (input_spliced[0] == "l" || input_spliced[0] == "L"  && input_spliced.size() == 1){ // case where user wants to print
         document.print_document();
       }
-      else if (input_spliced[0] == "s" || input_spliced[0] == "S"){ // case where user wants to save
+      else if (input_spliced[0] == "s" || input_spliced[0] == "S"  && input_spliced.size() == 1){ // case where user wants to save
         document.save_document(argv[1]);
       }
-      else if (input_spliced[0] == "h" || input_spliced[0] == "H"){ // case where user wants to print the instructions again
+      else if (input_spliced[0] == "h" || input_spliced[0] == "H"  && input_spliced.size() == 1){ // case where user wants to print the instructions again
         print_instructions();
       }
-      else if (input_spliced[0] == "q" || input_spliced[0] == "Q") { // case where user wants to quit
+      else if (input_spliced[0] == "u" || input_spliced[0] == "U"  && input_spliced.size() == 1){ // case where user wants to undo the previous action
+        document.undo();
+      }
+      else if (input_spliced[0] == "r" || input_spliced[0] == "R"  && input_spliced.size() == 1){ // case where user wants to redo the previous action
+        document.redo();
+      }
+      else if (input_spliced[0] == "q" || input_spliced[0] == "Q"  && input_spliced.size() == 1) { // case where user wants to quit
         break;
       }
       else {
@@ -150,9 +189,14 @@ void print_instructions(){
   cout << "To insert text at the end of the file, type 'I' followed by the text." << endl;
   cout << "To insert text at a certain line number, type 'I' followed by a space and the desired line number." << endl;
   cout << "To delete a line, type 'D' followed by a space and the line number." << endl;
+  cout << "To copy a line into clipboard, type 'C' followed by a space and the line number." << endl;
+  cout << "To paste a line, type 'P' followed by a space and the line number." << endl;
+  cout << "A text line which has been copied into clipboard recently is the line to be pasted." << endl;
   cout << "To print all the lines, type 'L' and press enter." << endl;
   cout << "To save the current content, type 'S' and press enter." << endl;
   cout << "To display this introduction, type 'H' and press enter." << endl;
+  cout << "To Undo, type 'U' and press enter." << endl;
+  cout << "To Redo, type 'R' and press enter." << endl;
   cout << "To quit, type 'Q' and press enter." << endl;
   cout << "-----------------------------------------------------------" << endl;
 

@@ -24,7 +24,7 @@ class Line {
   public:
     Line(string, Line*); // constructor -- constructs a single node
     friend class Document; // friend relationship to Document class
-    ~Line(){ delete next_node; };
+
 };
 
 /*
@@ -42,16 +42,23 @@ class Line {
 class Document {
 
   private:
-    Line *head; // HEAD pointer to linked list
+    Line *head, *undo_head, *redo_head; // HEAD pointer to linked list
+    string copy_line;
 
   public:
-    Document(){ head=NULL; }; // constructor -- initialize head to NULL
+    Document(){ head=NULL; undo_head=NULL; redo_head=NULL; }; // constructor -- initialize head to NULL
     int get_num_lines(); // returns number of lines
     void insert_line(string, int); // inserts a line
     void delete_line(int); // deletes a line
     void print_document(); // prints the document
     void save_document(string); // saves the document
-    ~Document(){ delete head; }; // destructor
+    void copy(int);
+    void paste(int);
+    void delete_list(Line*);
+    void copy_linked_list(Line*&, Line*&);
+    void undo();
+    void redo();
+    ~Document(); // destructor
 
 };
 

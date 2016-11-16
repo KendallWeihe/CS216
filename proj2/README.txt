@@ -1,7 +1,7 @@
 README
 Author: Kendall Weihe
 Project: A simple editor using linked lists
-Assignment: CS216 Fall 2016 Programming Assignment #1
+Assignment: CS216 Fall 2016 Programming Assignment #2
 
 Purpose of this project:
   - Learn/review linked lists
@@ -23,7 +23,7 @@ Requirements:
 
 To execute program:
   `make`
-  `./myEditor CS216PA1.txt`
+  `./myEditor CS216PA2.txt`
   `make clean`
 
 For general pseudocode, please see program files.
