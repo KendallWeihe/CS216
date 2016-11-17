@@ -1,0 +1,20 @@
+ 2004  git commit -m "pushing"
+ 2005  git push
+ 2006  git stash
+ 2007  git pull
+ 2008  git merge stash
+ 2009  git pull
+ 2010  git add --all
+ 2011  git commit -m "pushing"
+ 2012  git push
+ 2013  git pull
+ 2014  mkdir lab11
+ 2015  ls
+ 2016  cd labb11
+ 2017  cd lab11
+ 2018  curl http://www.cs.uky.edu/~yipike/CS216/Lab11source.zip > ./Lab11source.zip
+ 2019  unzip Lab11source.zip 
+ 2020  g++ –o Lab11 Lab11_original.cpp SortingList.cpp
+ 2021  g++ Lab11_original.cpp SortingList.cpp -o Lab11
+ 2022  history | tail -20 | cut –b8- > Lab11testfile.txt
+ 2023  history | tail -20 > Lab11testfile.txt
