@@ -8,6 +8,7 @@
 
 using namespace std;
 
+// see autocomplete.cpp for comments on functions
 class Autocomplete {
   public:
     Autocomplete();

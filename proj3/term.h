@@ -7,6 +7,7 @@
 
 using namespace std;
 
+// see term.cpp for comments on functions
 class Term {
   public:
     Term();

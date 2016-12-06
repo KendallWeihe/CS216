@@ -5,23 +5,25 @@
 
 using namespace std;
 
-Term::Term(){
-
-}
+// default constructor
+Term::Term(){}
 
 Term::Term(string query, int weight_p){
   key = query;
   weight = weight_p;
 }
 
+// function to get the weight
 int Term::getWeight(){
   return weight;
 }
 
+// function to get the key
 string Term::getKey(){
   return key;
 }
 
+// function to compare Term's lexographically
 int Term::lexographic(Term that){
   if (key == that.getKey()){
     return 0;
@@ -34,6 +36,7 @@ int Term::lexographic(Term that){
   }
 }
 
+// function to compare Term's by weight in descending order
 int Term::byWeight(Term that){
   if (weight == that.getWeight()){
     return 0;
@@ -46,7 +49,7 @@ int Term::byWeight(Term that){
   }
 }
 
-
+// function to compare Term's by the first r chars
 int Term::byPrefix(Term that, int r){
   string key1, key2;
   for (int i = 0; i < r; i++){
@@ -64,6 +67,7 @@ int Term::byPrefix(Term that, int r){
   }
 }
 
+// function to return true or false whether or not the Term matches the prefix
 bool Term::prefixMatch(string prefix){
   string temp_prefix;
   for (int i = 0; i < prefix.length(); i++){
@@ -75,6 +79,7 @@ bool Term::prefixMatch(string prefix){
   return false;
 }
 
+// function to print the Term
 void Term::print(){
   cout << weight << ":    " << key << endl;
 }
