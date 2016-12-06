@@ -34,7 +34,7 @@ int main(int argc, char *argv[]){
   vector<Term> matching_terms;
   while (user_input != "exit"){
     cout << "Please input the search query (type 'exit' to quit):\n";
-    cin >> user_input;
+    getline(cin, user_input);
 
     auto_complete.allMatches(user_input, matching_terms);
 
