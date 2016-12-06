@@ -9,5 +9,3 @@ CS216PA3: $(OBJECTS)
 
 clean:
 	rm -f *.o CS216PA3
-
-

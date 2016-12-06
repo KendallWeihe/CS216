@@ -4,6 +4,8 @@
 #include <fstream>
 #include "autocomplete.h"
 #include "term.h"
+#include <ctime>
+#include <time.h>
 
 using namespace std;
 
@@ -28,15 +30,22 @@ int main(int argc, char *argv[]){
   }
   file.close();
 
+  clock_t begin, end;
+  begin = clock();
   auto_complete.bubbleSort();
+  end = clock();
+  cout << "Time for sorting all terms: " << double(end - begin) / CLOCK_PER_SEC << " seconds" << endl;
 
   string user_input = "";
   vector<Term> matching_terms;
+  cout << "Please input the search query (type 'exit' to quit):\n";
+  getline(cin, user_input);
   while (user_input != "exit"){
-    cout << "Please input the search query (type 'exit' to quit):\n";
-    getline(cin, user_input);
 
+    begin = clock();
     auto_complete.allMatches(user_input, matching_terms);
+    end = clock();
+    cout << "Time for searching all matched terms: " << double(end - begin) / CLOCK_PER_SEC << " seconds" << endl;
 
     for (int i = 0; i < matching_terms.size(); i++){
       for (int j = 0; j < matching_terms.size()-1; j++){
@@ -55,6 +64,9 @@ int main(int argc, char *argv[]){
     }
 
     matching_terms.clear();
+
+    cout << "Please input the search query (type 'exit' to quit):\n";
+    getline(cin, user_input);
   }
 
 }
