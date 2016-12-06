@@ -20,7 +20,7 @@ class Term {
     void print();
   private:
     string key;
-    int weight;
+    unsigned long long weight;
 };
 
 #endif

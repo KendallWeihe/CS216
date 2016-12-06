@@ -22,19 +22,30 @@ string Term::getKey(){
   return key;
 }
 
-int Term::byWeight(Term that){
-  if (weight < that.getWeight()){
+int Term::lexographic(Term that){
+  if (key == that.getKey()){
     return 0;
   }
-  return -1;
-}
-
-int Term::lexographic(Term that){
-  if (key < that.getKey()){
+  else if (key < that.getKey()){
+    return 1;
+  }
+  else {
     return -1;
   }
-  return 0;
 }
+
+int Term::byWeight(Term that){
+  if (weight == that.getWeight()){
+    return 0;
+  }
+  else if (weight < that.getWeight()){
+    return 1;
+  }
+  else {
+    return -1;
+  }
+}
+
 
 int Term::byPrefix(Term that, int r){
   string key1, key2;
@@ -42,16 +53,21 @@ int Term::byPrefix(Term that, int r){
     key1 = key[i];
     key2 = that.getKey()[i];
   }
-  if (key1 < key2){
+  if (key1 == key2){
+    return 0;
+  }
+  else if (key1 < key2){
+    return 1;
+  }
+  else {
     return -1;
   }
-  return 0;
 }
 
 bool Term::prefixMatch(string prefix){
   string temp_prefix;
   for (int i = 0; i < prefix.length(); i++){
-    temp_prefix[i] = key[i];
+    temp_prefix += key[i];
   }
   if (temp_prefix == prefix){
     return true;
