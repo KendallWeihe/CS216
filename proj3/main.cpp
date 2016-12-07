@@ -25,6 +25,10 @@ int main(int argc, char *argv[]){
   // open, read, and close file
   ifstream file;
   file.open(argv[1]);
+  if (file.fail()){
+    cout << "Error in opening file\n";
+    exit(0);
+  }
   int temp_weight;
   string temp_key;
   Autocomplete auto_complete; // define auto_complete object
@@ -41,7 +45,7 @@ int main(int argc, char *argv[]){
   begin = clock();
   auto_complete.bubbleSort();
   end = clock();
-  cout << "Time for sorting all terms: " << double(end - begin) / CLOCK_PER_SEC << " seconds" << endl;
+  cout << "Time for sorting all terms: " << double(end - begin) << " clock cycles" << endl;
 
   // begin taking user inputs and finding matches
   string user_input = "";
@@ -54,7 +58,7 @@ int main(int argc, char *argv[]){
     begin = clock();
     auto_complete.allMatches(user_input, matching_terms);
     end = clock();
-    cout << "Time for searching all matched terms: " << double(end - begin) / CLOCK_PER_SEC << " seconds" << endl;
+    cout << "Time for searching all matched terms: " << double(end - begin) << " clock cycles" << endl;
 
     // use bubble sort to sort the matching terms by weight
     for (int i = 0; i < matching_terms.size(); i++){

@@ -10,6 +10,11 @@ General program description:
       - finds an endpoint in the binary search with matching prefix
       - scans in both directions until the prefix no longer matches the key
 
+NOTE:
+  From the text files I tested with, there was always a tab "\t" in between the weight and the key.
+  So then, I used the line of code `temp_key = temp_key.substr(1, temp_key.length());` to get rid of the tab.
+  IF YOUR TEXT FILE DOES NOT USE TABS IN BETWEEN THE WEIGHT AND KEY, THEN THE FIRST CHAR OF EVERY KEY WILL BE CUT OFF.
+
 Algorithms used:
   - bubble sort
     - O(n^2)
